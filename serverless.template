@@ -18,10 +18,6 @@
         }
       },
       "Properties": {
-        "Architectures": [
-          "x86_64"
-        ],
-        "Handler": "ApiCrudAWSSeries::ApiCrudAWSSeries.Functions_Get_Generated::Get",
         "Runtime": "dotnet8",
         "CodeUri": ".",
         "MemorySize": 512,
@@ -30,12 +26,153 @@
           "AWSLambdaBasicExecutionRole"
         ],
         "PackageType": "Zip",
+        "Handler": "ApiCrudAWSSeries::ApiCrudAWSSeries.Functions_Get_Generated::Get",
         "Events": {
           "RootGet": {
             "Type": "Api",
             "Properties": {
               "Path": "/",
               "Method": "GET"
+            }
+          }
+        }
+      }
+    },
+    "ApiCrudAWSSeriesFunctionsFindGenerated": {
+      "Type": "AWS::Serverless::Function",
+      "Metadata": {
+        "Tool": "Amazon.Lambda.Annotations",
+        "SyncedEvents": [
+          "RootGet"
+        ],
+        "SyncedEventProperties": {
+          "RootGet": [
+            "Path",
+            "Method"
+          ]
+        }
+      },
+      "Properties": {
+        "Runtime": "dotnet8",
+        "CodeUri": ".",
+        "MemorySize": 512,
+        "Timeout": 30,
+        "Policies": [
+          "AWSLambdaBasicExecutionRole"
+        ],
+        "PackageType": "Zip",
+        "Handler": "ApiCrudAWSSeries::ApiCrudAWSSeries.Functions_Find_Generated::Find",
+        "Events": {
+          "RootGet": {
+            "Type": "Api",
+            "Properties": {
+              "Path": "/find/{id}",
+              "Method": "GET"
+            }
+          }
+        }
+      }
+    },
+    "ApiCrudAWSSeriesFunctionsPostGenerated": {
+      "Type": "AWS::Serverless::Function",
+      "Metadata": {
+        "Tool": "Amazon.Lambda.Annotations",
+        "SyncedEvents": [
+          "RootPost"
+        ],
+        "SyncedEventProperties": {
+          "RootPost": [
+            "Path",
+            "Method"
+          ]
+        }
+      },
+      "Properties": {
+        "Runtime": "dotnet8",
+        "CodeUri": ".",
+        "MemorySize": 512,
+        "Timeout": 30,
+        "Policies": [
+          "AWSLambdaBasicExecutionRole"
+        ],
+        "PackageType": "Zip",
+        "Handler": "ApiCrudAWSSeries::ApiCrudAWSSeries.Functions_Post_Generated::Post",
+        "Events": {
+          "RootPost": {
+            "Type": "Api",
+            "Properties": {
+              "Path": "/post",
+              "Method": "POST"
+            }
+          }
+        }
+      }
+    },
+    "ApiCrudAWSSeriesFunctionsPutGenerated": {
+      "Type": "AWS::Serverless::Function",
+      "Metadata": {
+        "Tool": "Amazon.Lambda.Annotations",
+        "SyncedEvents": [
+          "RootPut"
+        ],
+        "SyncedEventProperties": {
+          "RootPut": [
+            "Path",
+            "Method"
+          ]
+        }
+      },
+      "Properties": {
+        "Runtime": "dotnet8",
+        "CodeUri": ".",
+        "MemorySize": 512,
+        "Timeout": 30,
+        "Policies": [
+          "AWSLambdaBasicExecutionRole"
+        ],
+        "PackageType": "Zip",
+        "Handler": "ApiCrudAWSSeries::ApiCrudAWSSeries.Functions_Put_Generated::Put",
+        "Events": {
+          "RootPut": {
+            "Type": "Api",
+            "Properties": {
+              "Path": "/put/{id}",
+              "Method": "PUT"
+            }
+          }
+        }
+      }
+    },
+    "ApiCrudAWSSeriesFunctionsDeleteGenerated": {
+      "Type": "AWS::Serverless::Function",
+      "Metadata": {
+        "Tool": "Amazon.Lambda.Annotations",
+        "SyncedEvents": [
+          "RootDelete"
+        ],
+        "SyncedEventProperties": {
+          "RootDelete": [
+            "Path",
+            "Method"
+          ]
+        }
+      },
+      "Properties": {
+        "Runtime": "dotnet8",
+        "CodeUri": ".",
+        "MemorySize": 512,
+        "Timeout": 30,
+        "Policies": [
+          "AWSLambdaBasicExecutionRole"
+        ],
+        "PackageType": "Zip",
+        "Handler": "ApiCrudAWSSeries::ApiCrudAWSSeries.Functions_Delete_Generated::Delete",
+        "Events": {
+          "RootDelete": {
+            "Type": "Api",
+            "Properties": {
+              "Path": "/delete/{id}",
+              "Method": "DELETE"
             }
           }
         }

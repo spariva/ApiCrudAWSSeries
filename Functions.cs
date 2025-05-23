@@ -46,4 +46,37 @@ public class Functions
         List<Serie> series = await repo.GetSeriesAsync();
         return HttpResults.Ok(series);
     }
+
+    [LambdaFunction]
+    [RestApi(LambdaHttpMethod.Get, "/find/{id}")]
+    public async Task<IHttpResult> Find(int id, ILambdaContext context)
+    {
+        Serie s = await repo.GetSerieById(id);
+        return HttpResults.Ok(s);
+    }
+
+    [LambdaFunction]
+    [RestApi(LambdaHttpMethod.Post, "/post")]
+    public async Task<IHttpResult> Post([FromBody]Serie serie, ILambdaContext context)
+    {
+        await this.repo.CreateSerieAsync(serie.Nombre, serie.Imagen, serie.Anyo);
+        return HttpResults.Ok();
+    }
+
+    [LambdaFunction]
+    [RestApi(LambdaHttpMethod.Put, "/put/{id}")]
+    public async Task<IHttpResult> Put(int id, [FromBody] Serie serie, ILambdaContext context)
+    {
+        await this.repo.UpdateSerieAsync(id, serie.Nombre, serie.Imagen, serie.Anyo);
+        return HttpResults.Ok();
+    }
+
+    [LambdaFunction]
+    [RestApi(LambdaHttpMethod.Delete, "/delete/{id}")]
+    public async Task<IHttpResult> Delete(int id)
+    {
+        await this.repo.DeleteSerieAsync(id);
+        return HttpResults.Ok();
+    }
+
 }

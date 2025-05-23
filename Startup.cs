@@ -1,4 +1,7 @@
 using Amazon.Lambda.Annotations;
+using ApiCrudAWSSeries.Data;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace ApiCrudAWSSeries;
@@ -16,8 +19,15 @@ public class Startup
     /// </summary>
     public void ConfigureServices(IServiceCollection services)
     {
+        var builder = new ConfigurationBuilder()
+            .SetBasePath(Directory.GetCurrentDirectory())
+            .AddJsonFile("appsettings.json", true);
+        var configuration = builder.Build();
+        services.AddSingleton<IConfiguration>(configuration);
+
         services.AddTransient<Repositories.RepositorySeries>();
         string connectionString = @"server=database-elastic-maki.ciby6amo8qzf.us-east-1.rds.amazonaws.com;port=3306;user id=adminsql;password=Admin123;database=lunes;";
+        services.AddDbContext<SeriesContext>(options => options.UseMySQL(connectionString));
         //// Example of creating the IConfiguration object and
         //// adding it to the dependency injection container.
         //var builder = new ConfigurationBuilder()
